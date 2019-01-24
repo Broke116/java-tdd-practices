@@ -21,14 +21,13 @@ class MemberService {
     }
 
     boolean transferMileagePoints(String source, String target, int amount) {
-        if (memberRepository.checkMemberExist(source) && memberRepository.checkMemberExist(target)) {
-            if (memberRepository.getMember(source).getMiles() > amount)
-                memberRepository.transferMileagePoints(source,target, amount);
-            else
-                return false;
-        } else {
+        MemberDao sender = memberRepository.getMember(source);
+        MemberDao receiver = memberRepository.getMember(target);
+
+        if (sender.getMiles() < amount)
             return false;
-        }
+
+        memberRepository.transferMileagePoints(source,target, amount);
         return true;
     }
 }

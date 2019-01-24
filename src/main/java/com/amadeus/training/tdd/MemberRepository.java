@@ -43,7 +43,7 @@ class MemberRepository {
         int targetCurrentMile = members.get(target).getMiles();
 
         members.get(source).setMiles(sourceCurrentMile - amount);
-        members.get(target).setMiles(targetCurrentMile - amount);
+        members.get(target).setMiles(targetCurrentMile + amount);
 
         return true;
     }
